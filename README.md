@@ -32,6 +32,20 @@
 $ npm install
 ```
 
+## Before Running
+
+```bash
+# create file `.development.env` and `.production.env`
+# put inside
+# PORT=<production or development app PORT>
+# HTTP_PROXY_SERVER=<IP address proxy server>
+# HTTP_PROXY_PORT=<PORT proxy server>
+# HTTP_PROXY_LOGIN=<proxy LOGIN>
+# HTTP_PROXY_PASSWORD=<proxy PASSWORD>
+# HTTP_PROXY_TYPE=< http:// or https:// or socks://>
+# HTTP_PROXY_CHANGE_LINK=<proxy CHANGE LINK >
+```
+
 ## Running the app
 
 ```bash
@@ -45,17 +59,14 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Docker
 
 ```bash
-# unit tests
-$ npm run test
+# docker-compose build
+$ docker-compose build
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# docker-compose up
+$ docker-compose up
 ```
 
 ## Support

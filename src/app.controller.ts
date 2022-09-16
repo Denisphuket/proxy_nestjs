@@ -1,19 +1,28 @@
-import {Body, Controller, Post} from '@nestjs/common';
-import { AppService } from './app.service';
+import {Body, Controller, Get, Headers, Param, Post, Query} from '@nestjs/common';
+import {AppService} from './app.service';
 import {GetDto} from "./dto/get.dto";
 import {PostDto} from "./dto/post.dto";
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+	constructor(private readonly appService: AppService) {
+	}
 
-  @Post('get')
-  get(@Body() dto: GetDto){
-    return this.appService.get(dto);
-  }
+	@Post()
+	postNew(
+		@Headers() headers: any,
+		@Query('url') url: string,
+		@Body() dto: any,
+	) {
+		return this.appService.post(headers, url, dto);
+	}
 
-  @Post('post')
-  post(@Body() dto: PostDto){
-    return this.appService.post(dto);
-  }
+
+	@Get()
+	getNew(
+		@Headers() headers: any,
+		@Query('url') url: string,
+	) {
+		return this.appService.get(headers, url);
+	}
 }
