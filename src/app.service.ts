@@ -8,8 +8,11 @@ export class AppService {
 
 
 	async get(headers, url) {
-		delete headers['accept-encoding']
+		delete headers['accept']
 		delete headers['host']
+		delete headers['accept-encoding']
+		delete headers['content-length']
+		delete headers['connection']
 		try {
 			const response = await this.httpService.axiosRef.get(
 				url,
@@ -22,7 +25,7 @@ export class AppService {
 				responseHeaders: response.headers,
 			}
 		} catch (error) {
-			throw new HttpException(error.message, error.status | HttpStatus.BAD_REQUEST)
+			throw new HttpException(error.message, error.response?.status | HttpStatus.BAD_REQUEST)
 		}
 	}
 
@@ -31,6 +34,7 @@ export class AppService {
 		delete headers['host']
 		delete headers['accept-encoding']
 		delete headers['content-length']
+		delete headers['connection']
 		try {
 			const response = await this.httpService.axiosRef.post(
 				url,
@@ -44,7 +48,7 @@ export class AppService {
 				responseHeaders: response.headers,
 			}
 		} catch (error) {
-			throw new HttpException(error.message, error.status | HttpStatus.BAD_REQUEST)
+			throw new HttpException(error.message, error.response?.status | HttpStatus.BAD_REQUEST)
 		}
 	}
 

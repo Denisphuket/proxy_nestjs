@@ -1,7 +1,5 @@
-import {Body, Controller, Get, Headers, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Get, Headers, Post, Query} from '@nestjs/common';
 import {AppService} from './app.service';
-import {GetDto} from "./dto/get.dto";
-import {PostDto} from "./dto/post.dto";
 
 @Controller()
 export class AppController {
@@ -25,4 +23,5 @@ export class AppController {
 	) {
 		return this.appService.get(headers, url);
 	}
+
 }
